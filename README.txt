@@ -6,7 +6,7 @@ initiateScreen
  - this prints you out a list of steps you must do to allow spectrascan connection, the screen terminal needs to be attached for this game.
 connect
  - once your screen terminal is ready to go, this initiates the remote mode connection on the spectrascan
-#echo
+echo
  - echos commands and measures to console - vital for logging
 backlightOff
  - turns the backlight off - important in dark room
