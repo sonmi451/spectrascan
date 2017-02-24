@@ -1,10 +1,10 @@
 classdef SpectraScanFunctions
     
-    % Calibrating with SpectraScan PR670       
+    % Calibrating with SpectraScan PR670
     % A McLean 2016
     % aishamclean451@gmail.com
     % These functions allow you to interface with the SpectraScan
-    % in remote mode using GNU screen 
+    % in remote mode using GNU screen
     
     methods (Static)
         
@@ -52,6 +52,7 @@ classdef SpectraScanFunctions
             system(eval('commandReturn'));
             WaitSecs(1);
             disp('remote mode initiated');
+            
         end
         
         %% set echo mode
@@ -66,6 +67,7 @@ classdef SpectraScanFunctions
             system(eval('commandReturn'));
             WaitSecs(1);
             disp('set echo mode on');
+            
         end
         
         %% Turn backlight off
@@ -83,12 +85,12 @@ classdef SpectraScanFunctions
             
         end
         
-       %% set aperture to 1 deg
-                
-       function [] = widenAperture
+        %% set aperture to 1 deg
+        
+        function [] = widenAperture
             commandF = sprintf('screen -X stuff ''F''');
             commandS = sprintf('screen -X stuff ''S''');
-            command0 = sprintf('screen -X stuff ''0''');        
+            command0 = sprintf('screen -X stuff ''0''');
             commandReturn = sprintf('screen -X stuff ''%s''', char(hex2dec('0D')));
             system(eval('commandS'));
             WaitSecs(1);
@@ -100,14 +102,14 @@ classdef SpectraScanFunctions
             WaitSecs(1);
             disp('set SpectraScan aperture to 1 deg');
             
-       end
-       
-       %% set apeture to 0.5 deg
-
-       function [] = aperture05Deg
+        end
+        
+        %% set aperture to 0.5 deg
+        
+        function [] = aperture05Deg
             commandF = sprintf('screen -X stuff ''F''');
             commandS = sprintf('screen -X stuff ''S''');
-            command1 = sprintf('screen -X stuff ''1''');            
+            command1 = sprintf('screen -X stuff ''1''');
             commandReturn = sprintf('screen -X stuff ''%s''', char(hex2dec('0D')));
             system(eval('commandS'));
             WaitSecs(1);
@@ -119,14 +121,14 @@ classdef SpectraScanFunctions
             WaitSecs(1);
             disp('set SpectraScan aperture to 0.5 deg');
             
-       end
-       
-       %% set apeture to 0.25 deg
-
-       function [] = aperture025Deg
+        end
+        
+        %% set aperture to 0.25 deg
+        
+        function [] = aperture025Deg
             commandF = sprintf('screen -X stuff ''F''');
             commandS = sprintf('screen -X stuff ''S''');
-            command2 = sprintf('screen -X stuff ''2''');            
+            command2 = sprintf('screen -X stuff ''2''');
             commandReturn = sprintf('screen -X stuff ''%s''', char(hex2dec('0D')));
             system(eval('commandS'));
             WaitSecs(1);
@@ -138,15 +140,14 @@ classdef SpectraScanFunctions
             WaitSecs(1);
             disp('set SpectraScan aperture to 0.25 deg');
             
-       end
-       
-       %% Turn on normal speed mode
+        end
+        
+        %% Turn on normal speed mode
         
         function [] = normalSpeed
             commandG = sprintf('screen -X stuff ''G''');
             commandS = sprintf('screen -X stuff ''S''');
             command0 = sprintf('screen -X stuff ''0''');
-            
             commandReturn = sprintf('screen -X stuff ''%s''', char(hex2dec('0D')));
             system(eval('commandS'));
             WaitSecs(1);
@@ -157,7 +158,7 @@ classdef SpectraScanFunctions
             system(eval('commandReturn'));
             WaitSecs(1);
             disp('turned SpectraScan onto normal speed mode');
-
+            
         end
         
         %% Turn on extended sensitivity mode
@@ -166,7 +167,6 @@ classdef SpectraScanFunctions
             commandH = sprintf('screen -X stuff ''H''');
             commandS = sprintf('screen -X stuff ''S''');
             command1 = sprintf('screen -X stuff ''1''');
-            
             commandReturn = sprintf('screen -X stuff ''%s''', char(hex2dec('0D')));
             system(eval('commandS'));
             WaitSecs(1);
@@ -177,7 +177,7 @@ classdef SpectraScanFunctions
             system(eval('commandReturn'));
             WaitSecs(1);
             disp('turned SpectraScan onto extended sensitivity mode');
-
+            
         end
         
         %% Turn on standard sensitivity mode
@@ -195,10 +195,10 @@ classdef SpectraScanFunctions
             WaitSecs(1);
             system(eval('commandReturn'));
             WaitSecs(1);
-            disp('turned SpectraScan onto stndard sensitivty mode');
-
+            disp('turned SpectraScan onto standard sensitivty mode');
+            
         end
-               
+        
         %% measure Luminance
         
         % make the system wait after shunting commands
@@ -208,7 +208,6 @@ classdef SpectraScanFunctions
             commandM = sprintf('screen -X stuff ''M''');
             command1 = sprintf('screen -X stuff ''1''');
             commandReturn = sprintf('screen -X stuff ''%s''', char(hex2dec('0D')));
-            
             system(eval('commandM'));
             WaitSecs(1);
             system(eval('command1'));
@@ -216,7 +215,7 @@ classdef SpectraScanFunctions
             system(eval('commandReturn'));
             WaitSecs(5);
             disp('please wait: measuring luminance');
-
+            
         end
         
         %% measure Spectra
@@ -228,7 +227,6 @@ classdef SpectraScanFunctions
             commandM = sprintf('screen -X stuff ''M''');
             command5 = sprintf('screen -X stuff ''5''');
             commandReturn = sprintf('screen -X stuff ''%s''', char(hex2dec('0D')));
-            
             system(eval('commandM'));
             WaitSecs(1);
             system(eval('command5'));
@@ -243,7 +241,7 @@ classdef SpectraScanFunctions
         
         % query when the logfile was last updated in order to determine
         % if a measure has been taken.
-        % ALT QUERY to find numlines 
+        % ALT QUERY to find numlines
         % cat ~/screenlog.0 | wc -l
         
         function [] = checkMeasure
@@ -259,7 +257,7 @@ classdef SpectraScanFunctions
                 screenlogEdit2 = screenlog2.date;
             end
         end
-  
+        
         %% some notes on quitting
         
         % the spectroradiometer needs to be quit first out of remote mode
@@ -302,6 +300,5 @@ classdef SpectraScanFunctions
             sprintf('Renamed logfile to BOLDscreenCalibration%s.txt',TIMESTAMP')
         end
         
-
     end
 end
